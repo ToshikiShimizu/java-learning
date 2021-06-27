@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.*;
+
 public class Main{
     public static void main(String[] args){
         // 1-1
@@ -15,5 +18,18 @@ public class Main{
         System.out.println(a1.equals(a2));
         a2.accountNo = " 001 ";
         System.out.println(a1.equals(a2));
+
+        // 1-3
+        int[] a = {1,2,3,4,5};
+        int[] b = {1,2,3,4,5};
+        System.out.println(a.equals(b));
+        System.out.println(Arrays.equals(a,b));
+
+        // 1-7
+        List<Account> list = new ArrayList<>();
+        Collections.sort(list);
+        Collections.sort(list, new ZandakaComparator());
+
+
     }
 }
