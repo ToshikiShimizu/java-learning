@@ -1,10 +1,16 @@
-import java.io.FileReader;
+import java.io.File;
+
+import org.w3c.dom.NodeList;
+
 import java.util.*;
 import org.apache.commons.csv.*;
-
-
 import java.io.*;
 import java.text.*;
+import javax.xml.parsers.*;
+import org.w3c.dom.*;
+
+import com.fasterxml.jackson.databind.*;
+
 
 public class Main{
     public static void main(String[] args) throws Exception{
@@ -47,15 +53,52 @@ public class Main{
         // fw.close();
 
         // 7-7
-        ResourceBundle rb = ResourceBundle.getBundle("sukkiri-wakaru-java-nyumon-jissenhen.ch07.rpgsave");
-        String heroName = rb.getString("heroName");
-        System.out.println("勇者の名前:" + heroName);
+        // ResourceBundle rb = ResourceBundle.getBundle("sukkiri-wakaru-java-nyumon-jissenhen.ch07.rpgsave");
+        // String heroName = rb.getString("heroName");
+        // System.out.println("勇者の名前:" + heroName);
 
         // 7-8
-        Locale loc = Locale.getDefault();
-        System.out.println(loc.getCountry() + "-" + loc.getLanguage());
-        String now = (new SimpleDateFormat()).format(new Date());
-        ResourceBundle rb2 = ResourceBundle.getBundle("message");
-        System.out.println(rb2.getString("CURENT_TIME_IS") + now);
+        // Locale loc = Locale.getDefault();
+        // System.out.println(loc.getCountry() + "-" + loc.getLanguage());
+        // String now = (new SimpleDateFormat()).format(new Date());
+        // ResourceBundle rb2 = ResourceBundle.getBundle("message");
+        // System.out.println(rb2.getString("CURENT_TIME_IS") + now);
+
+        // 7-9
+        // InputStream is = new FileInputStream("rpgsave.xml");
+        // Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(is);
+        // Element hero = doc.getDocumentElement();
+        // Element weapon = findChildByTag(hero, "weapon");
+        // Element power = findChildByTag(weapon, "power");
+        // String value = power.getTextContent();
+
+        // 7-10
+        // ObjectMapper mapper = new ObjectMapper();
+        // JsonNode root = mapper.readTree(new File("hero.json"));
+        // JsonNode hero = root.get("hero");
+        // JsonNode weapon = hero.get("weapon");
+        // System.out.println("名前:" + hero.get("name").textValue());
+        // System.out.println("武器:" + weapon.get("name").textValue());
+
+        // 7-11
+        ObjectMapper mapper = new ObjectMapper();
+        JsonFileData file = mapper.readValue (new File("hero.json"), JsonFileData.class);
+        System.out.println("名前:" + file.hero.name);
+        System.out.println("武器:" + file.hero.weapon.name);
     }
+    
+        // static Element findChildByTag(Element self, String name) throws Exception{
+        //     NodeList children = self.getChildNodes();
+        //     for (int i = 0; i < children.getLength(); i++){
+        //         if (children.item(i) instanceof Element){
+        //             Element e = (Element) children.item(i);
+        //             if (e.getTagName().equals(name)){
+        //                 return e;
+        //             }
+        //         }
+        //     }
+        //     return null;
+        // }
+
+
 }
