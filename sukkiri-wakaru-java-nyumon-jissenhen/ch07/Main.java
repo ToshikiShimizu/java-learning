@@ -1,7 +1,10 @@
 import java.io.FileReader;
 import java.util.*;
 import org.apache.commons.csv.*;
+
+
 import java.io.*;
+import java.text.*;
 
 public class Main{
     public static void main(String[] args) throws Exception{
@@ -47,5 +50,12 @@ public class Main{
         ResourceBundle rb = ResourceBundle.getBundle("sukkiri-wakaru-java-nyumon-jissenhen.ch07.rpgsave");
         String heroName = rb.getString("heroName");
         System.out.println("勇者の名前:" + heroName);
+
+        // 7-8
+        Locale loc = Locale.getDefault();
+        System.out.println(loc.getCountry() + "-" + loc.getLanguage());
+        String now = (new SimpleDateFormat()).format(new Date());
+        ResourceBundle rb2 = ResourceBundle.getBundle("message");
+        System.out.println(rb2.getString("CURENT_TIME_IS") + now);
     }
 }
