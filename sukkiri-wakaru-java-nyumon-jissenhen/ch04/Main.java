@@ -1,8 +1,9 @@
 import java.util.*;
 import java.text.*;
+import java.lang.reflect.*;
 
 public class Main{
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception{
         // 4-1
         // System.exit(1);
         // System.out.println("正常終了しました");
@@ -44,6 +45,30 @@ public class Main{
         }
         System.out.print("世界標準時との時差は");
         System.out.println(tz.getRawOffset() / 3600000 + "時間");
+
+        // 4-7
+        Class<?> info1 = String.class;
+        System.out.println(info1.getSimpleName());
+        System.out.println(info1.getName());
+        System.out.println(info1.getPackage().getName());
+
+        System.out.println(info1.isArray());
+        Class<?> info2 = info1.getSuperclass();
+        System.out.println(info2.getName());
+        Class<?> info3 = args.getClass();
+        System.out.println(info3.isArray());
+
+        // 4-8
+        Class<?> clazz = RefSample.class;
+        Constructor<?> cons = clazz.getConstructor(int.class);
+        RefSample rs = (RefSample)cons.newInstance(256);
+        Field f = clazz.getField("times");
+        f.set(rs, 2);
+        System.out.println(f.get(rs));
+        Method m = clazz.getMethod("hello", String.class, int.class);
+        m.invoke(rs, "reflection!", 128);
+        boolean pubc = Modifier.isPublic(clazz.getModifiers());
+        boolean tinm = Modifier.isFinal(m.getModifiers());
 
     }
 }
