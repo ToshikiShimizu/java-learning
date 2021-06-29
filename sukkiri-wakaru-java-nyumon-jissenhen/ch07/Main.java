@@ -1,12 +1,10 @@
 import java.io.File;
 
 import org.w3c.dom.NodeList;
-
-import java.util.*;
-import org.apache.commons.csv.*;
-import java.io.*;
-import java.text.*;
-import javax.xml.parsers.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import org.w3c.dom.*;
 
 import com.fasterxml.jackson.databind.*;
@@ -33,15 +31,15 @@ public class Main{
         // fr.close();
 
         // 7-5
-        Reader fr = new FileReader("./rpgsave.properties");
-        Properties p = new Properties();
-        p.load(fr);
-        String name = p.getProperty("heroName");
-        String strHp = p.getProperty("heroHp");
-        int hp = Integer.parseInt(strHp);
-        System.out.println("勇者の名前:" + name);
-        System.out.println("勇者のHP:" + hp);
-        fr.close();
+        // Reader fr = new FileReader("./rpgsave.properties");
+        // Properties p = new Properties();
+        // p.load(fr);
+        // String name = p.getProperty("heroName");
+        // String strHp = p.getProperty("heroHp");
+        // int hp = Integer.parseInt(strHp);
+        // System.out.println("勇者の名前:" + name);
+        // System.out.println("勇者のHP:" + hp);
+        // fr.close();
 
         // 7-6
         // Writer fw = new FileWriter("./rpgsave.properties");
@@ -81,10 +79,22 @@ public class Main{
         // System.out.println("武器:" + weapon.get("name").textValue());
 
         // 7-11
-        ObjectMapper mapper = new ObjectMapper();
-        JsonFileData file = mapper.readValue (new File("hero.json"), JsonFileData.class);
-        System.out.println("名前:" + file.hero.name);
-        System.out.println("武器:" + file.hero.weapon.name);
+        // ObjectMapper mapper = new ObjectMapper();
+        // JsonFileData file = mapper.readValue (new File("hero.json"), JsonFileData.class);
+        // System.out.println("名前:" + file.hero.name);
+        // System.out.println("武器:" + file.hero.weapon.name);
+
+        // 7-14
+        Hero hero1 = new Hero("ミナト", 75, 18);
+        FileOutputStream fos = new FileOutputStream("rpgsave.dat");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(hero1);
+        oos.flush();
+        oos.close();
+        FileInputStream fis = new FileInputStream("rpgsave.dat");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        Hero hero2 = (Hero) ois.readObject();
+        ois.close();
     }
     
         // static Element findChildByTag(Element self, String name) throws Exception{
