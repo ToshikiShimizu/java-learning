@@ -1,0 +1,11 @@
+<project name="RPG: スッキリ魔王征伐" basedir="."> 
+    <target name="full_build">
+        <echo message="ビルドを開始します" />
+        <javac srcdir="." destdir="." />
+        <junit />
+        <javadoc><fileset dir=".">
+            <include name="**/*.java" />
+            <exclude name="**/*Test.java" />
+        </fileset></javadoc>
+    </target>
+</project>
