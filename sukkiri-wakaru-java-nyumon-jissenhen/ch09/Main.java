@@ -31,6 +31,19 @@ public class Main{
             pstmt.setInt(1, 10);
             ResultSet rs = pstmt.executeQuery();
             rs.close();
+            
+            // code9-4
+            // while(rs.next()){
+            //     System.out.println(rs.getString("NAME"));
+            // }
+
+            // code9-5
+            if (rs.next()){
+                System.out.println("ゴブリンのHPは"+rs.getInt("HP"));
+            }else{
+                System.out.println("ゴブリンはありませんでした");
+            }
+
             pstmt.close();
 
         } catch (SQLException e){
