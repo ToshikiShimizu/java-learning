@@ -12,7 +12,7 @@ public class Main{
         Connection con = null;
         try {
             con = DriverManager.getConnection("jdbc:h2:~/rpgdb");
-
+            con.setAutoCommit(false);
             // code9-2
             // PreparedStatement pstmt = con.prepareStatement("DELETE FROM MONSTERS WHERE HP <= ? OR NAME = ?");
             // pstmt.setInt(1, 10);
@@ -46,8 +46,14 @@ public class Main{
 
             pstmt.close();
 
+            con.commit();
+
         } catch (SQLException e){
-            e.printStackTrace();
+            try{
+                con.rollback();
+            }catch (SQLException e2){
+                e2.printStackTrace();
+            }
         } finally {
             if ( con!=null){
                 try {
