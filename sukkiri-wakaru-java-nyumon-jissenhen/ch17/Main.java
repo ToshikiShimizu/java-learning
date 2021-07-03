@@ -1,4 +1,5 @@
 import java.awt.FlowLayout;
+import java.awt.event.*;
 import javax.swing.*;
 
 public class Main {
@@ -11,7 +12,12 @@ public class Main {
     JLabel label = new JLabel("Hello World!!");
     frame.add(label);
     JButton button = new JButton("押してね");
-    button.addActionListener(new MinatoListener());
+    
+    button.addMouseListener(new MouseAdapter() {
+        public void mouseClicked(MouseEvent e){
+            System.out.println("クリックされました");
+        }
+    });
     frame.add(button);
 
     frame.setVisible(true);
