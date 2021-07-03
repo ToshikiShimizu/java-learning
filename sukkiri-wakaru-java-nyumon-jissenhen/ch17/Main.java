@@ -1,4 +1,4 @@
-import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import javax.swing.*;
 
 public class Main {
@@ -6,19 +6,13 @@ public class Main {
     JFrame frame = new JFrame("はじめてのSwing");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setSize(400, 200);
-
-    frame.setLayout(new BorderLayout());
+    frame.setLayout(new FlowLayout());
 
     JLabel label = new JLabel("Hello World!!");
-    frame.add(label, BorderLayout.CENTER);
-    JButton buttonN = new JButton("上ボタン");
-    frame.add(buttonN, BorderLayout.NORTH);
-    JButton buttonS = new JButton("下ボタン");
-    frame.add(buttonS, BorderLayout.SOUTH);
-    JButton buttonW = new JButton("左ボタン");
-    frame.add(buttonW, BorderLayout.WEST);
-    JButton buttonE = new JButton("右ボタン");
-    frame.add(buttonE, BorderLayout.EAST);
+    frame.add(label);
+    JButton button = new JButton("押してね");
+    button.addActionListener(new MinatoListener());
+    frame.add(button);
 
     frame.setVisible(true);
     System.out.println("フレームを表示");
