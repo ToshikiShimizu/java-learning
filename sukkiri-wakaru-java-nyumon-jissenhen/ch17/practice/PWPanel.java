@@ -13,4 +13,12 @@ public class PWPanel extends JPanel {
   }
 
   public void hideText() { pw.setEchoChar('★'); }
+  public void showText() { pw.setEchoChar((char)0); }
+
+  public String getText() {
+    return String.valueOf(this.pw.getPassword());
+  }
+  public void setText(String newValue) {
+    this.pw.setText(newValue);
+  }
 }

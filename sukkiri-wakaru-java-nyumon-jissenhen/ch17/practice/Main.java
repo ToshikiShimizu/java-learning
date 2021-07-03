@@ -7,10 +7,12 @@ public class Main {
     frame.setSize(400, 200);
     frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
-    frame.add(new IDPanel());
-    frame.add(new PWPanel());
-    frame.add(new CheckPanel());
-    frame.add(new ButtonPanel());
+    IDPanel idpanel = new IDPanel();
+    PWPanel pwpanel = new PWPanel();
+    frame.add(idpanel);
+    frame.add(pwpanel);
+    frame.add(new CheckPanel(pwpanel));
+    frame.add(new ButtonPanel(idpanel, pwpanel));
 
     frame.setVisible(true);
   }
